@@ -14,7 +14,7 @@ int main() {
         {
             const auto time_begin = std::chrono::high_resolution_clock::now();
             for (unsigned i = 0; i < ub; ++i) {
-                (void)deinterleave_one(static_cast<unsigned>(dist(gen)));
+                (void)deinterleave_all(static_cast<unsigned>(dist(gen)));
             }
             const auto time_end = std::chrono::high_resolution_clock::now();
             const auto ns = std::chrono::duration_cast<std::chrono::nanoseconds>(time_end - time_begin).count();
@@ -46,27 +46,3 @@ int main() {
     std::cout << " is faster by a factor " << ratio << std::endl;
     return 0;
 }
-
-#if 0
-#include <cstdio>
-#include "zorder.h"
-
-int main() {
-    unsigned n = 0;
-    std::cin >> n;
-    auto coords = deinterleave_all<unsigned, 2>(n);
-    std::cout << coords[0] << "\t" << coords[1] << std::endl;
-    return 0;
-}
-#endif
-#if 0
-#include <cstdio>
-#include "zorder.h"
-
-int main() {
-    unsigned n = 0;
-    scanf("%u", &n);
-    printf("%u", deinterleave_one(n));
-    return 0;
-}
-#endif
